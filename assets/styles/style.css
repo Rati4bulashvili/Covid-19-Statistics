@@ -53,15 +53,20 @@ table {
   background-color: #120136;
   list-style-type: none;
   margin: 0px;
-  padding: 3px 7px;
+  padding: 3px 0px;
   overflow: hidden;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+}
+
+@media only screen and (max-width: 1150px) {
+  .navbar {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -76,6 +81,7 @@ table {
   background-color: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .navbar__list-item--sidebar-toggle__img {
@@ -143,8 +149,13 @@ table {
 
 .navbar__list-item--logo {
   height: 54px;
-  margin-right: 7px;
   display: block;
+}
+
+@media only screen and (min-width: 1150px) {
+  .navbar__list-item--logo {
+    margin: 0px  20px;
+  }
 }
 
 @media only screen and (max-width: 700px) {
@@ -400,7 +411,11 @@ table {
   margin-top: 50px;
 }
 
-@media only screen and (max-width: 1300px) {
+.wrapper__map img {
+  width: 1100px;
+}
+
+@media only screen and (max-width: 1550px) {
   .wrapper__map img {
     max-width: 700px;
   }
@@ -409,21 +424,18 @@ table {
 @media only screen and (max-width: 1150px) {
   .wrapper__map img {
     width: 500px;
-    height: 300px;
   }
 }
 
 @media only screen and (max-width: 850px) {
   .wrapper__map img {
     width: 341px;
-    height: 200px;
   }
 }
 
 @media only screen and (max-width: 500px) {
   .wrapper__map img {
     width: 100%;
-    height: 250px;
   }
 }
 

@@ -18,6 +18,7 @@ const sidebar = document.querySelector('.wrapper__sidebar');
 // const sidebarOpen = document.querySelector('.navbar__list-item--sidebar-open');
 // const sidebarClose = document.querySelector('.navbar__list-item--sidebar-close');
 // const header = document.querySelector('.wrapper__statistics__country-data__country-info__header');
+let countries;
 
 //onload, LocalStorage
 let favourites = [];
@@ -43,13 +44,12 @@ const getCountries = async function(){
 			"x-rapidapi-host": "covid-19-coronavirus-statistics2.p.rapidapi.com"
 		}
 	})
-
 	return countries.json();
 }
-
 getCountries().then(response => response.result)
 .then(response => {
 	listCountries(response);
+	countries = response;
 })
 
 function listCountries(countries){
@@ -67,24 +67,32 @@ function sortCountries(countries){
 }
 
 async function moveToFavourite(event){
-
 	const countryName = event.target.closest('.country-name').dataset.id;
 
 	const id = event.target.closest('.country-list').dataset.id;
-	getCountries().then(response => response.result)
-	.then(response => {
-		const sortedCountries = sortCountries(response);
-		favourites.push(sortedCountries[id]);
-		favourites = [...new Set(favourites)];
-		fillContainer(favourites, favouritesContainer)
-		localStorage.setItem('favourites', favourites);
-	})
-
+	const sortedCountries = sortCountries(countries);
+	favourites.push(sortedCountries[id]);
+	favourites = [...new Set(favourites)];
+	fillContainer(favourites, favouritesContainer)
+	localStorage.setItem('favourites', favourites);
 }
+
+// async function moveToFavourite(event){
+// 	const countryName = event.target.closest('.country-name').dataset.id;
+
+// 	const id = event.target.closest('.country-list').dataset.id;
+// 	getCountries().then(response => response.result)
+// 	.then(response => {
+// 		const sortedCountries = sortCountries(response);
+// 		favourites.push(sortedCountries[id]);
+// 		favourites = [...new Set(favourites)];
+// 		fillContainer(favourites, favouritesContainer)
+// 		localStorage.setItem('favourites', favourites);
+// 	})
+// }
 
 function removeFromFavourite(event){
 	const id = event.target.closest('.country-list').dataset.id;
-	console.log(event.target.dataset.id)
 	favourites.splice(id, 1);
 	fillContainer(favourites, favouritesContainer)
 	localStorage.setItem('favourites', favourites);
@@ -157,23 +165,38 @@ async function viewCountryInfo(event){
 	viewCovidInfo(event);
 }
 
-async function viewCovidInfo(event, response){
+async function viewCovidInfo(event){
 
 	const country = event.target.closest('.country-name').dataset.id;
-	getCountries().then(res => res.result)
-	.then(response => {
 
-		let [countryData] = response.filter( cur => {
-			if(cur.country === country){
-				return cur
-			}
-		})
-
-		cases.innerText = countryData.totalCases;
-		recovered.innerText = countryData.totalRecovered;
-		deaths.innerText = countryData.totalDeaths;
+	let [countryData] = countries.filter( cur => {
+		if(cur.country === country){
+			return cur
+		}
 	})
+
+	cases.innerText = countryData.totalCases;
+	recovered.innerText = countryData.totalRecovered;
+	deaths.innerText = countryData.totalDeaths;
 }
+
+// async function viewCovidInfo(event){
+
+// 	const country = event.target.closest('.country-name').dataset.id;
+// 	getCountries().then(res => res.result)
+// 	.then(response => {
+
+// 		let [countryData] = response.filter( cur => {
+// 			if(cur.country === country){
+// 				return cur
+// 			}
+// 		})
+
+// 		cases.innerText = countryData.totalCases;
+// 		recovered.innerText = countryData.totalRecovered;
+// 		deaths.innerText = countryData.totalDeaths;
+// 	})
+// }
 
 sidebarBtn.addEventListener('click', toggleSidebar);
 
@@ -181,7 +204,6 @@ function toggleSidebar(){
 	if(sidebar.classList.contains('sidebar-appear')){
 		sidebar.classList.remove('sidebar-appear');
 		sidebar.classList.add('sidebar-disappear');
-		console.log(sidebarBtn)
 		sidebarImg.src='./assets/pictures/arrow-right.png'
 	}
 	else{
