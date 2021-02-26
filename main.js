@@ -215,7 +215,14 @@ function toggleSidebar(){
 }
 
 function search(){
-	[add] = countries.filter( cur => cur.country == input.value)
+	[add] = countries.filter( cur => {
+		
+		if(cur.country.toUpperCase() === input.value.toUpperCase()){
+			console.log(cur.country)
+			return cur.country;
+		}
+		
+	})
 	try{
 		favourites.push(add.country);
 		favourites = [...new Set(favourites)];
