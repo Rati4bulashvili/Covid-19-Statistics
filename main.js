@@ -15,14 +15,24 @@ const header = document.querySelector('#header');
 const sidebarBtn = document.querySelector('.navbar__list-item--sidebar-toggle');
 const sidebarImg = document.querySelector('.navbar__list-item--sidebar-toggle__img');
 const sidebar = document.querySelector('.wrapper__sidebar');
-// const sidebarOpen = document.querySelector('.navbar__list-item--sidebar-open');
-// const sidebarClose = document.querySelector('.navbar__list-item--sidebar-close');
-// const header = document.querySelector('.wrapper__statistics__country-data__country-info__header');
+const input = document.querySelector('.wrapper__sidebar__all-countries__search__input');
+const searchBtn = document.querySelector('.wrapper__sidebar__all-countries__search__submit');
+const errorMsg = document.querySelector('.notify-error__error-message');
+const errorMsgContainer = document.querySelector('.notify-error');
 let countries;
-
-//onload, LocalStorage
 let favourites = [];
 
+
+sidebarBtn.addEventListener('click', toggleSidebar);
+searchBtn.addEventListener('click', search);
+input.addEventListener("keyup", function(event) {
+	if (event.keyCode === 13) {
+	  event.preventDefault();
+	  searchBtn.click();
+	}
+})
+
+//onload, LocalStorage
 window.onload = function(){
 	_getLocalStorage();
 }
@@ -35,7 +45,7 @@ function _getLocalStorage(){
 	}
 }
 
-//API handling
+//////////////////////////////////////API handling
 const getCountries = async function(){
 	const countries = await fetch("https://covid-19-coronavirus-statistics2.p.rapidapi.com/countriesData", {
 		"method": "GET",
@@ -50,8 +60,50 @@ getCountries().then(response => response.result)
 .then(response => {
 	listCountries(response);
 	countries = response;
+}).catch(err => {
+	displayErrorMsg(err)
 })
 
+async function viewCountryInfo(event){
+
+	const country = event.target.closest('.country-name').dataset.id;
+	const res = await fetch(`https://restcountries.eu/rest/v2/name/${country}`);
+	const [data] = await res.json();
+
+	flag.src = data.flag; 
+	population.innerText = data.population;
+	language.innerText = data.languages[0].name;
+	capital.innerText = data.capital;
+	region.innerText = data.subregion;
+	header.innerText = data.name;
+	currency.innerText = data.currencies[0].code;
+
+	viewCovidInfo(event);
+}
+
+const overallData = async function(){
+	const countries = await fetch("https://covid-19-data.p.rapidapi.com/totals", {
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-key": "6192d944aemsh3747b76ff701443p101a0ajsn59f7f1003e3f",
+			"x-rapidapi-host": "covid-19-data.p.rapidapi.com"
+		}
+	})
+
+	return countries.json();
+}
+
+overallData().then(res => {
+	cases.innerText = res[0].confirmed;
+	recovered.innerText = res[0].recovered;
+	deaths.innerText = res[0].deaths;
+	deaths.innerText = res[0].deaths;
+	critical.innerText = res[0].critical;
+}).catch(err => {
+	displayErrorMsg(err)
+})
+
+/////////////////////////////////////////////////////////automatically fired functions
 function listCountries(countries){
 	sortedCountries = sortCountries(countries);
 	fillContainer(sortedCountries, countriesContainer);
@@ -66,39 +118,6 @@ function sortCountries(countries){
 	return sortedCountries;
 }
 
-async function moveToFavourite(event){
-	const countryName = event.target.closest('.country-name').dataset.id;
-
-	const id = event.target.closest('.country-list').dataset.id;
-	const sortedCountries = sortCountries(countries);
-	favourites.push(sortedCountries[id]);
-	favourites = [...new Set(favourites)];
-	fillContainer(favourites, favouritesContainer)
-	localStorage.setItem('favourites', favourites);
-}
-
-// async function moveToFavourite(event){
-// 	const countryName = event.target.closest('.country-name').dataset.id;
-
-// 	const id = event.target.closest('.country-list').dataset.id;
-// 	getCountries().then(response => response.result)
-// 	.then(response => {
-// 		const sortedCountries = sortCountries(response);
-// 		favourites.push(sortedCountries[id]);
-// 		favourites = [...new Set(favourites)];
-// 		fillContainer(favourites, favouritesContainer)
-// 		localStorage.setItem('favourites', favourites);
-// 	})
-// }
-
-function removeFromFavourite(event){
-	const id = event.target.closest('.country-list').dataset.id;
-	favourites.splice(id, 1);
-	fillContainer(favourites, favouritesContainer)
-	localStorage.setItem('favourites', favourites);
-}
-
-//functions
 
 function fillContainer(arr, container){
 	container.innerHTML = '';
@@ -113,7 +132,7 @@ function fillContainer(arr, container){
 		btnContainer.dataset.id = elem;
 		btnContainer.classList.add('country-name');
 		
-		var countryName = document.createElement('span');
+		let countryName = document.createElement('span');
 		countryName.classList.add('country-name');
 
 		countryName.innerText = elem;
@@ -148,21 +167,24 @@ function fillContainer(arr, container){
 	})
 }
 
-async function viewCountryInfo(event){
+/////////////////////////////////////////////////////user-fired functions
 
-	const country = event.target.closest('.country-name').dataset.id;
-	const res = await fetch(`https://restcountries.eu/rest/v2/name/${country}`);
-	const [data] = await res.json();
+async function moveToFavourite(event){
+	const countryName = event.target.closest('.country-name').dataset.id;
 
-	flag.src = data.flag; 
-	population.innerText = data.population;
-	language.innerText = data.languages[0].name;
-	capital.innerText = data.capital;
-	region.innerText = data.subregion;
-	header.innerText = data.name;
-	currency.innerText = data.currencies[0].code;
+	const id = event.target.closest('.country-list').dataset.id;
+	const sortedCountries = sortCountries(countries);
+	favourites.push(sortedCountries[id]);
+	favourites = [...new Set(favourites)];
+	fillContainer(favourites, favouritesContainer)
+	localStorage.setItem('favourites', favourites);
+}
 
-	viewCovidInfo(event);
+function removeFromFavourite(event){
+	const id = event.target.closest('.country-list').dataset.id;
+	favourites.splice(id, 1);
+	fillContainer(favourites, favouritesContainer)
+	localStorage.setItem('favourites', favourites);
 }
 
 async function viewCovidInfo(event){
@@ -180,26 +202,6 @@ async function viewCovidInfo(event){
 	deaths.innerText = countryData.totalDeaths;
 }
 
-// async function viewCovidInfo(event){
-
-// 	const country = event.target.closest('.country-name').dataset.id;
-// 	getCountries().then(res => res.result)
-// 	.then(response => {
-
-// 		let [countryData] = response.filter( cur => {
-// 			if(cur.country === country){
-// 				return cur
-// 			}
-// 		})
-
-// 		cases.innerText = countryData.totalCases;
-// 		recovered.innerText = countryData.totalRecovered;
-// 		deaths.innerText = countryData.totalDeaths;
-// 	})
-// }
-
-sidebarBtn.addEventListener('click', toggleSidebar);
-
 function toggleSidebar(){
 	if(sidebar.classList.contains('sidebar-appear')){
 		sidebar.classList.remove('sidebar-appear');
@@ -213,35 +215,32 @@ function toggleSidebar(){
 	}
 }
 
-const overallData = async function(){
-	const countries = await fetch("https://covid-19-data.p.rapidapi.com/totals", {
-		"method": "GET",
-		"headers": {
-			"x-rapidapi-key": "6192d944aemsh3747b76ff701443p101a0ajsn59f7f1003e3f",
-			"x-rapidapi-host": "covid-19-data.p.rapidapi.com"
-		}
-	})
+function search(){
+	[add] = countries.filter( cur => cur.country == input.value)
+	try{
+		favourites.push(add.country);
+		favourites = [...new Set(favourites)];
+		fillContainer(favourites, favouritesContainer)
+		localStorage.setItem('favourites', favourites);
+	}
+	catch{
+		error = `can not find country '${input.value}'`
+		displayErrorMsg(error)
+	}
 
-	return countries.json();
 }
 
-overallData().then(res => {
-	cases.innerText = res[0].confirmed;
-	recovered.innerText = res[0].recovered;
-	deaths.innerText = res[0].deaths;
-	deaths.innerText = res[0].deaths;
-	critical.innerText = res[0].critical;
-})
+function displayErrorMsg(error){
+	errorMsgContainer.style.opacity = '1';
+	errorMsg.innerText = error;
+	
+	setTimeout( () => {	
+		errorMsgContainer.style.opacity = '0'
+	}, 6000);
+}
 
 
 
 
-//1.++fill favs container
-//1.1++use functional programming
 
-//2.++remove from favs
-//2.1++bug: data id should be assigned according to arr
-//2.2++LC
-//2.3  bug: favoriting one country more than one times
 
-//3++<3 and lupa images

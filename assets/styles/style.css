@@ -1,3 +1,22 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #949494;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6b6b7d;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4e4e65;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -89,7 +108,7 @@ table {
   margin: 10px;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 680px) {
   .navbar__list-item--sidebar-toggle {
     display: none;
   }
@@ -138,6 +157,13 @@ table {
   }
 }
 
+@media only screen and (max-width: 350px) {
+  .navbar__sections__list-item__link {
+    font-size: 18px;
+    padding: 0px 8px;
+  }
+}
+
 .navbar__sections__list-item__link:hover {
   color: #fcbf1e;
   padding-bottom: 8px;
@@ -158,10 +184,22 @@ table {
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 680px) {
   .navbar__list-item--logo {
     display: none;
   }
+}
+
+.notify-error {
+  opacity: 0;
+  font-size: 20px;
+  background-color: red;
+  font-style: italic;
+  position: absolute;
+  padding: 10px;
+  border: 2px solid black;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .wrapper {
@@ -188,13 +226,14 @@ table {
 
 @media only screen and (max-width: 1820px) {
   .wrapper__sidebar {
-    max-height: 1700px;
+    max-height: 1500px;
   }
 }
 
 @media only screen and (max-width: 1150px) {
   .wrapper__sidebar {
     min-width: 300px;
+    max-height: 1350px;
   }
 }
 
@@ -217,6 +256,40 @@ table {
   margin: 8px;
 }
 
+.wrapper__sidebar__favourites__list__loader, .wrapper__sidebar__all-countries__list__loader {
+  border: 8px solid black;
+  border-radius: 50%;
+  border-top: 8px solid blue;
+  border-bottom: 8px solid blue;
+  width: 80px;
+  height: 80px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+  margin: 50px auto;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .wrapper__sidebar__all-countries__search {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -232,13 +305,34 @@ table {
   font-style: italic;
 }
 
+.wrapper__sidebar__all-countries__search__input {
+  padding: 5px;
+  font-size: 22px;
+  margin: 5px 0;
+}
+
 .wrapper__sidebar__all-countries__search__submit {
+  padding: 0px 5px;
   background-color: #035aa6;
   color: white;
-  -webkit-transition: color, 0.3s;
-  transition: color, 0.3s;
-  border-radius: 3px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
   cursor: pointer;
+  text-align: center;
+  background-color: #37bb3c;
+  border: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 5px #999;
+          box-shadow: 4px 5px #999;
+}
+
+.wrapper__sidebar__all-countries__search__submit:active {
+  background-color: #45a048;
+  -webkit-box-shadow: 2px 3px #666;
+          box-shadow: 2px 3px #666;
+  -webkit-transform: translateY(3px);
+          transform: translateY(3px);
 }
 
 .wrapper__sidebar__all-countries__search__submit:hover {
@@ -382,7 +476,7 @@ table {
 }
 
 .wrapper__statistics__country-data__country-flag {
-  width: 700px;
+  width: 680px;
   height: 400px;
 }
 
@@ -417,7 +511,7 @@ table {
 
 @media only screen and (max-width: 1550px) {
   .wrapper__map img {
-    max-width: 700px;
+    max-width: 680px;
   }
 }
 
@@ -475,14 +569,14 @@ table {
   outline: none;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 680px) {
   .sidebar-appear {
     display: block;
     position: absolute;
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 680px) {
   .sidebar-disappear {
     display: none;
   }
