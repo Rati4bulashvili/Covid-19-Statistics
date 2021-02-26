@@ -216,8 +216,8 @@ table {
                 &__loader{
                     border: 8px solid black;
                     border-radius: 50%;
-                    border-top: 8px solid blue;
-                    border-bottom: 8px solid blue;
+                    border-top: 8px solid $blue;
+                    border-bottom: 8px solid $blue;
                     width: 80px;
                     height: 80px;
                     animation: spin 2s linear infinite;
@@ -247,7 +247,7 @@ table {
                 &__input{
                     padding: 5px;
                     @media only screen and (max-width: 680px) {
-                        margin-right: 15px
+                        margin-right: 10px
                     }
                 }
 
@@ -316,19 +316,21 @@ table {
                         border-right: 1px solid black;
                         
                         @media only screen and (max-width: 1150px) {
-                            border: none;
+                            border-right: none;
                             border-bottom: 1px solid black;
-
                         }
-
+                        
+                        @media only screen and (max-width: 500px) {
+                            border-bottom: 1px solid black;
+                        }
                 }
 
                 &__country-info, &__covid-info{
                     
                     @media only screen and (max-width: 500px) {
                         width: 100%;
-                        padding: 0px;
-                        border: none;
+
+                        padding: 10px 0px 0px 0px;
                     }
    
                     display: flex;
@@ -377,6 +379,10 @@ table {
                 @media only screen and (max-width: 500px) {
                     width: 100%;
                     height: 300px;
+                }
+                @media only screen and (max-width: 375px) {
+                    width: 100%;
+                    height: 230px;
                 }
             }
         }

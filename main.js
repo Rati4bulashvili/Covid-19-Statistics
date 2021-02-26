@@ -20,16 +20,18 @@ const searchBtn = document.querySelector('.wrapper__sidebar__all-countries__sear
 const errorMsg = document.querySelector('.notify-error__error-message');
 const errorMsgContainer = document.querySelector('.notify-error');
 let countries;
+let filteredCountries = [];
 let favourites = [];
 
 sidebarBtn.addEventListener('click', toggleSidebar);
 searchBtn.addEventListener('click', search);
-input.addEventListener("keyup", function(event) {
-	if (event.keyCode === 13) {
-	  event.preventDefault();
-	  searchBtn.click();
-	}
-})
+input.addEventListener('keyup', search);
+// input.addEventListener("keyup", function(event) {
+// 	if (event.keyCode === 13) {
+// 	  event.preventDefault();
+// 	  searchBtn.click();
+// 	}
+// })
 
 //onload, LocalStorage
 window.onload = function(){
@@ -214,26 +216,24 @@ function toggleSidebar(){
 	}
 }
 
+
+
+
 function search(){
-	[add] = countries.filter( cur => {
-		
-		if(cur.country.toUpperCase() === input.value.toUpperCase()){
-			console.log(cur.country)
-			return cur.country;
-		}
-		
-	})
-	try{
-		favourites.push(add.country);
-		favourites = [...new Set(favourites)];
-		fillContainer(favourites, favouritesContainer)
-		localStorage.setItem('favourites', favourites);
-	}
-	catch{
-		error = `can not find country '${input.value}'`
-		displayErrorMsg(error)
+
+	if(input.value === ''){
+		fillContainer(sortCountries(countries), countriesContainer)
+		return;
 	}
 
+	[add] = countries.filter( cur => {	
+		if(cur.country.toUpperCase().slice(0,input.value.length) === input.value.toUpperCase()){
+			filteredCountries.push(cur.country)
+		}	
+	})
+
+	fillContainer(filteredCountries, countriesContainer)
+	filteredCountries = [];
 }
 
 function displayErrorMsg(error){

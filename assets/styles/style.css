@@ -257,8 +257,8 @@ table {
 .wrapper__sidebar__favourites__list__loader, .wrapper__sidebar__all-countries__list__loader {
   border: 8px solid black;
   border-radius: 50%;
-  border-top: 8px solid blue;
-  border-bottom: 8px solid blue;
+  border-top: 8px solid #0170d1;
+  border-bottom: 8px solid #0170d1;
   width: 80px;
   height: 80px;
   -webkit-animation: spin 2s linear infinite;
@@ -309,7 +309,7 @@ table {
 
 @media only screen and (max-width: 680px) {
   .wrapper__sidebar__all-countries__search__input {
-    margin-right: 15px;
+    margin-right: 10px;
   }
 }
 
@@ -420,7 +420,13 @@ table {
 
 @media only screen and (max-width: 1150px) {
   .wrapper__statistics__country-data__details__country-info {
-    border: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .wrapper__statistics__country-data__details__country-info {
     border-bottom: 1px solid black;
   }
 }
@@ -446,8 +452,7 @@ table {
 @media only screen and (max-width: 500px) {
   .wrapper__statistics__country-data__details__country-info, .wrapper__statistics__country-data__details__covid-info {
     width: 100%;
-    padding: 0px;
-    border: none;
+    padding: 10px 0px 0px 0px;
   }
 }
 
@@ -494,6 +499,13 @@ table {
   .wrapper__statistics__country-data__country-flag {
     width: 100%;
     height: 300px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .wrapper__statistics__country-data__country-flag {
+    width: 100%;
+    height: 230px;
   }
 }
 
