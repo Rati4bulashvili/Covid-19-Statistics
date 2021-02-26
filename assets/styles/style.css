@@ -2,19 +2,17 @@
   width: 10px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  background: #949494;
+  background: transparent;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #6b6b7d;
+  background: #7f7f91;
+  border-radius: 20px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #4e4e65;
+  background: #64647d;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -46,7 +44,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
   line-height: 1;
-  background-color: #035aa6;
+  background-color: #0170d1;
 }
 
 ol, ul {
@@ -300,39 +298,30 @@ table {
 }
 
 .wrapper__sidebar__all-countries__search__input, .wrapper__sidebar__all-countries__search__submit {
-  padding: 5px;
+  padding: 0px 5px;
   font-size: 18px;
   font-style: italic;
 }
 
 .wrapper__sidebar__all-countries__search__input {
   padding: 5px;
-  font-size: 22px;
-  margin: 5px 0;
+}
+
+@media only screen and (max-width: 680px) {
+  .wrapper__sidebar__all-countries__search__input {
+    margin-right: 15px;
+  }
 }
 
 .wrapper__sidebar__all-countries__search__submit {
-  padding: 0px 5px;
-  background-color: #035aa6;
+  background-color: #0170d1;
   color: white;
   -webkit-transition: 0.3s;
   transition: 0.3s;
-  outline: none;
-  cursor: pointer;
-  text-align: center;
-  background-color: #37bb3c;
   border: none;
-  border-radius: 10px;
-  -webkit-box-shadow: 4px 5px #999;
-          box-shadow: 4px 5px #999;
-}
-
-.wrapper__sidebar__all-countries__search__submit:active {
-  background-color: #45a048;
-  -webkit-box-shadow: 2px 3px #666;
-          box-shadow: 2px 3px #666;
-  -webkit-transform: translateY(3px);
-          transform: translateY(3px);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0px 10px;
 }
 
 .wrapper__sidebar__all-countries__search__submit:hover {
@@ -425,6 +414,17 @@ table {
   }
 }
 
+.wrapper__statistics__country-data__details__country-info {
+  border-right: 1px solid black;
+}
+
+@media only screen and (max-width: 1150px) {
+  .wrapper__statistics__country-data__details__country-info {
+    border: none;
+    border-bottom: 1px solid black;
+  }
+}
+
 .wrapper__statistics__country-data__details__country-info, .wrapper__statistics__country-data__details__covid-info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -437,14 +437,10 @@ table {
       -ms-flex-align: space-around;
           align-items: space-around;
   padding: 20px;
-  background-color: #ec4646;
-  color: #08d9d6;
+  background-color: #fcbf1e;
+  color: black;
   font-weight: bold;
   width: 300px;
-}
-
-.wrapper__statistics__country-data__details__country-info:not(.wrapper__statistics__country-data__covid-info), .wrapper__statistics__country-data__details__covid-info:not(.wrapper__statistics__country-data__covid-info) {
-  border-right: 1px solid #08d9d6;
 }
 
 @media only screen and (max-width: 500px) {

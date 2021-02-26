@@ -192,7 +192,7 @@ async function viewCovidInfo(event){
 
 	let [countryData] = countries.filter( cur => {
 		if(cur.country === country){
-			return cur
+			return cur;
 		}
 	})
 
