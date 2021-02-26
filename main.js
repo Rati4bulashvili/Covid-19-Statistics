@@ -16,15 +16,14 @@ const sidebarBtn = document.querySelector('.navbar__list-item--sidebar-toggle');
 const sidebarImg = document.querySelector('.navbar__list-item--sidebar-toggle__img');
 const sidebar = document.querySelector('.wrapper__sidebar');
 const input = document.querySelector('.wrapper__sidebar__all-countries__search__input');
-const searchBtn = document.querySelector('.wrapper__sidebar__all-countries__search__submit');
 const errorMsg = document.querySelector('.notify-error__error-message');
 const errorMsgContainer = document.querySelector('.notify-error');
 let countries;
 let filteredCountries = [];
 let favourites = [];
+let searching = false;
 
 sidebarBtn.addEventListener('click', toggleSidebar);
-searchBtn.addEventListener('click', search);
 input.addEventListener('keyup', search);
 
 //onload, LocalStorage
@@ -113,7 +112,6 @@ function sortCountries(countries){
 	return sortedCountries;
 }
 
-
 function fillContainer(arr, container){
 	container.innerHTML = '';
 	
@@ -165,13 +163,20 @@ function fillContainer(arr, container){
 /////////////////////////////////////////////////////user-fired functions
 
 async function moveToFavourite(event){
-	const countryName = event.target.closest('.country-name').dataset.id;
-
 	const id = event.target.closest('.country-list').dataset.id;
-	const sortedCountries = sortCountries(countries);
-	favourites.push(sortedCountries[id]);
-	favourites = [...new Set(favourites)];
-	fillContainer(favourites, favouritesContainer)
+
+	if(searching){
+		favourites.push(filteredCountries[id]);
+		console.log(filteredCountries)
+		favourites = [...new Set(favourites)];
+		fillContainer(favourites, favouritesContainer)
+	}
+	else{
+		const sortedCountries = sortCountries(countries);
+		favourites.push(sortedCountries[id]);
+		favourites = [...new Set(favourites)];
+		fillContainer(favourites, favouritesContainer)
+	}
 	localStorage.setItem('favourites', favourites);
 }
 
@@ -210,13 +215,14 @@ function toggleSidebar(){
 	}
 }
 
-
-
-
 function search(){
+	filteredCountries = [];
+	
+	searching = true;
 
 	if(input.value === ''){
 		fillContainer(sortCountries(countries), countriesContainer)
+		searching = false;
 		return;
 	}
 
@@ -226,8 +232,8 @@ function search(){
 		}	
 	})
 
+
 	fillContainer(filteredCountries, countriesContainer)
-	filteredCountries = [];
 }
 
 function displayErrorMsg(error){
