@@ -22,7 +22,6 @@ const errorMsgContainer = document.querySelector('.notify-error');
 let countries;
 let favourites = [];
 
-
 sidebarBtn.addEventListener('click', toggleSidebar);
 searchBtn.addEventListener('click', search);
 input.addEventListener("keyup", function(event) {
@@ -50,7 +49,7 @@ const getCountries = async function(){
 	const countries = await fetch("https://covid-19-coronavirus-statistics2.p.rapidapi.com/countriesData", {
 		"method": "GET",
 		"headers": {
-			"x-rapidapi-key": "1c502885fbmshb740a5f1616b35dp18c8b9jsn365e1d121942",
+			"x-rapidapi-key": "e9dd0e2b76mshaa4911a7ce7ae52p161d51jsncb3f45a82b6a",
 			"x-rapidapi-host": "covid-19-coronavirus-statistics2.p.rapidapi.com"
 		}
 	})
