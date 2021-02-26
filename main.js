@@ -26,12 +26,6 @@ let favourites = [];
 sidebarBtn.addEventListener('click', toggleSidebar);
 searchBtn.addEventListener('click', search);
 input.addEventListener('keyup', search);
-// input.addEventListener("keyup", function(event) {
-// 	if (event.keyCode === 13) {
-// 	  event.preventDefault();
-// 	  searchBtn.click();
-// 	}
-// })
 
 //onload, LocalStorage
 window.onload = function(){
