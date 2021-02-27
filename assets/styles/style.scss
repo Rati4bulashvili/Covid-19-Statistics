@@ -238,14 +238,10 @@ table {
                 display: flex;
                 justify-content: space-around;
 
-                &__input, &__submit{
-                    padding: 0px 5px;
-                    font-size: 18px;
-                    font-style: italic;
-                }
-
                 &__input{
-                    padding: 5px;
+                    font-style: italic;
+                    font-size: 18px;
+                    padding: 5px 25px;
                     @media only screen and (max-width: 680px) {
                         margin-right: 10px
                     }

@@ -297,14 +297,10 @@ table {
   margin: 15px 0px;
 }
 
-.wrapper__sidebar__all-countries__search__input, .wrapper__sidebar__all-countries__search__submit {
-  padding: 0px 5px;
-  font-size: 18px;
-  font-style: italic;
-}
-
 .wrapper__sidebar__all-countries__search__input {
-  padding: 5px;
+  font-style: italic;
+  font-size: 18px;
+  padding: 5px 25px;
 }
 
 @media only screen and (max-width: 680px) {
