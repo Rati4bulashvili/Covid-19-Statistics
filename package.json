@@ -1,0 +1,12 @@
+{
+  "name": "covid-statistics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "watch": "node-sass -o assets/styles assets/styles/scss/style.scss -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

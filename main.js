@@ -1,4 +1,3 @@
-//variables
 const countriesContainer = document.querySelector('.wrapper__sidebar__all-countries__list');
 const favouritesContainer = document.querySelector('.wrapper__sidebar__favourites__list');
 const flag = document.querySelector('.wrapper__statistics__country-data__country-flag');
@@ -52,8 +51,8 @@ const getCountries = async function(){
 }
 getCountries().then(response => response.result)
 .then(response => {
-	listCountries(response);
 	countries = response;
+	listCountries(response);
 }).catch(err => {
 	displayErrorMsg(err)
 })
@@ -244,9 +243,3 @@ function displayErrorMsg(error){
 		errorMsgContainer.style.opacity = '0'
 	}, 6000);
 }
-
-
-
-
-
-

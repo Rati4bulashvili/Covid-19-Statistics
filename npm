@@ -122,6 +122,16 @@ table {
       .navbar__list-item--logo {
         display: none; } }
 
+.notify-error {
+  opacity: 0;
+  font-size: 20px;
+  background-color: red;
+  font-style: italic;
+  position: absolute;
+  padding: 10px;
+  border: 2px solid black;
+  transition: 1s; }
+
 .wrapper {
   display: flex; }
   .wrapper__sidebar {
@@ -191,112 +201,110 @@ table {
         padding: 0px 10px; }
         .wrapper__sidebar__all-countries__search__submit:hover {
           color: #fcbf1e; }
-
-.wrapper__statistics {
-  display: flex;
-  flex-flow: row wrap;
-  height: 100%;
-  width: 100%;
-  justify-content: space-around; }
-  @media only screen and (max-width: 1820px) {
-    .wrapper__statistics {
-      margin-top: 50px;
-      justify-content: center; } }
-  .wrapper__statistics__country-data {
+  .wrapper__statistics {
     display: flex;
-    display: flex; }
+    flex-flow: row wrap;
+    height: 100%;
+    width: 100%;
+    justify-content: space-around; }
     @media only screen and (max-width: 1820px) {
-      .wrapper__statistics__country-data {
-        flex-flow: column wrap; } }
-    @media only screen and (max-width: 1150px) {
-      .wrapper__statistics__country-data {
+      .wrapper__statistics {
+        margin-top: 50px;
         justify-content: center; } }
-    @media only screen and (max-width: 500px) {
-      .wrapper__statistics__country-data {
-        width: 100%; } }
-    .wrapper__statistics__country-data__details {
+    .wrapper__statistics__country-data {
+      display: flex;
       display: flex; }
       @media only screen and (max-width: 1820px) {
-        .wrapper__statistics__country-data__details {
-          margin-top: 50px;
+        .wrapper__statistics__country-data {
+          flex-flow: column wrap; } }
+      @media only screen and (max-width: 1150px) {
+        .wrapper__statistics__country-data {
           justify-content: center; } }
-      @media only screen and (max-width: 1150px) {
-        .wrapper__statistics__country-data__details {
-          flex-direction: column;
-          align-items: center; } }
       @media only screen and (max-width: 500px) {
-        .wrapper__statistics__country-data__details {
+        .wrapper__statistics__country-data {
           width: 100%; } }
-      .wrapper__statistics__country-data__details__country-info {
-        border-right: 1px solid black; }
+      .wrapper__statistics__country-data__details {
+        display: flex; }
+        @media only screen and (max-width: 1820px) {
+          .wrapper__statistics__country-data__details {
+            margin-top: 50px;
+            justify-content: center; } }
         @media only screen and (max-width: 1150px) {
-          .wrapper__statistics__country-data__details__country-info {
-            border-right: none;
-            border-bottom: 1px solid black; } }
+          .wrapper__statistics__country-data__details {
+            flex-direction: column;
+            align-items: center; } }
         @media only screen and (max-width: 500px) {
-          .wrapper__statistics__country-data__details__country-info {
-            border-bottom: 1px solid black; } }
-      .wrapper__statistics__country-data__details__country-info, .wrapper__statistics__country-data__details__covid-info {
-        display: flex;
-        flex-direction: column;
-        align-items: space-around;
-        padding: 20px;
-        background-color: #fcbf1e;
-        color: black;
-        font-weight: bold;
-        width: 300px; }
+          .wrapper__statistics__country-data__details {
+            width: 100%; } }
+        .wrapper__statistics__country-data__details__country-info {
+          border-right: 1px solid black; }
+          @media only screen and (max-width: 1150px) {
+            .wrapper__statistics__country-data__details__country-info {
+              border-right: none;
+              border-bottom: 1px solid black; } }
+          @media only screen and (max-width: 500px) {
+            .wrapper__statistics__country-data__details__country-info {
+              border-bottom: 1px solid black; } }
+        .wrapper__statistics__country-data__details__country-info, .wrapper__statistics__country-data__details__covid-info {
+          display: flex;
+          flex-direction: column;
+          align-items: space-around;
+          padding: 20px;
+          background-color: #fcbf1e;
+          color: black;
+          font-weight: bold;
+          width: 300px; }
+          @media only screen and (max-width: 500px) {
+            .wrapper__statistics__country-data__details__country-info, .wrapper__statistics__country-data__details__covid-info {
+              width: 100%;
+              padding: 10px 0px 0px 0px; } }
+          .wrapper__statistics__country-data__details__country-info__header, .wrapper__statistics__country-data__details__covid-info__header {
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            align-self: center;
+            white-space: nowrap; }
+          .wrapper__statistics__country-data__details__country-info__population, .wrapper__statistics__country-data__details__country-info__language, .wrapper__statistics__country-data__details__country-info__capital, .wrapper__statistics__country-data__details__country-info__region, .wrapper__statistics__country-data__details__country-info__currency, .wrapper__statistics__country-data__details__covid-info__population, .wrapper__statistics__country-data__details__covid-info__language, .wrapper__statistics__country-data__details__covid-info__capital, .wrapper__statistics__country-data__details__covid-info__region, .wrapper__statistics__country-data__details__covid-info__currency {
+            font-size: 22px;
+            padding: 10px; }
+          .wrapper__statistics__country-data__details__country-info__cases, .wrapper__statistics__country-data__details__country-info__deaths, .wrapper__statistics__country-data__details__country-info__recovered, .wrapper__statistics__country-data__details__country-info__critical, .wrapper__statistics__country-data__details__covid-info__cases, .wrapper__statistics__country-data__details__covid-info__deaths, .wrapper__statistics__country-data__details__covid-info__recovered, .wrapper__statistics__country-data__details__covid-info__critical {
+            font-size: 22px;
+            padding: 15px; }
+      .wrapper__statistics__country-data__country-flag {
+        width: 680px;
+        height: 400px; }
+        @media only screen and (max-width: 1150px) {
+          .wrapper__statistics__country-data__country-flag {
+            width: 500px;
+            height: 300px; } }
+        @media only screen and (max-width: 850px) {
+          .wrapper__statistics__country-data__country-flag {
+            width: 341px;
+            height: 200px; } }
         @media only screen and (max-width: 500px) {
-          .wrapper__statistics__country-data__details__country-info, .wrapper__statistics__country-data__details__covid-info {
+          .wrapper__statistics__country-data__country-flag {
             width: 100%;
-            padding: 10px 0px 0px 0px; } }
-        .wrapper__statistics__country-data__details__country-info__header, .wrapper__statistics__country-data__details__covid-info__header {
-          font-size: 24px;
-          text-transform: uppercase;
-          margin-bottom: 20px;
-          align-self: center;
-          white-space: nowrap; }
-        .wrapper__statistics__country-data__details__country-info__population, .wrapper__statistics__country-data__details__country-info__language, .wrapper__statistics__country-data__details__country-info__capital, .wrapper__statistics__country-data__details__country-info__region, .wrapper__statistics__country-data__details__country-info__currency, .wrapper__statistics__country-data__details__covid-info__population, .wrapper__statistics__country-data__details__covid-info__language, .wrapper__statistics__country-data__details__covid-info__capital, .wrapper__statistics__country-data__details__covid-info__region, .wrapper__statistics__country-data__details__covid-info__currency {
-          font-size: 22px;
-          padding: 10px; }
-        .wrapper__statistics__country-data__details__country-info__cases, .wrapper__statistics__country-data__details__country-info__deaths, .wrapper__statistics__country-data__details__country-info__recovered, .wrapper__statistics__country-data__details__country-info__critical, .wrapper__statistics__country-data__details__covid-info__cases, .wrapper__statistics__country-data__details__covid-info__deaths, .wrapper__statistics__country-data__details__covid-info__recovered, .wrapper__statistics__country-data__details__covid-info__critical {
-          font-size: 22px;
-          padding: 15px; }
-    .wrapper__statistics__country-data__country-flag {
-      width: 680px;
-      height: 400px; }
+            height: 300px; } }
+        @media only screen and (max-width: 375px) {
+          .wrapper__statistics__country-data__country-flag {
+            width: 100%;
+            height: 230px; } }
+  .wrapper__map {
+    margin-top: 50px; }
+    .wrapper__map img {
+      width: 1100px; }
+      @media only screen and (max-width: 1550px) {
+        .wrapper__map img {
+          max-width: 680px; } }
       @media only screen and (max-width: 1150px) {
-        .wrapper__statistics__country-data__country-flag {
-          width: 500px;
-          height: 300px; } }
+        .wrapper__map img {
+          width: 500px; } }
       @media only screen and (max-width: 850px) {
-        .wrapper__statistics__country-data__country-flag {
-          width: 341px;
-          height: 200px; } }
+        .wrapper__map img {
+          width: 341px; } }
       @media only screen and (max-width: 500px) {
-        .wrapper__statistics__country-data__country-flag {
-          width: 100%;
-          height: 300px; } }
-      @media only screen and (max-width: 375px) {
-        .wrapper__statistics__country-data__country-flag {
-          width: 100%;
-          height: 230px; } }
-
-.wrapper__map {
-  margin-top: 50px; }
-  .wrapper__map img {
-    width: 1100px; }
-    @media only screen and (max-width: 1550px) {
-      .wrapper__map img {
-        max-width: 680px; } }
-    @media only screen and (max-width: 1150px) {
-      .wrapper__map img {
-        width: 500px; } }
-    @media only screen and (max-width: 850px) {
-      .wrapper__map img {
-        width: 341px; } }
-    @media only screen and (max-width: 500px) {
-      .wrapper__map img {
-        width: 100%; } }
+        .wrapper__map img {
+          width: 100%; } }
 
 .country-list {
   display: flex;
@@ -312,7 +320,7 @@ table {
       max-width: 150px;
       overflow: hidden; } }
   .country-list:hover {
-    background-color: #ffcb3c; }
+    background-color: #ec4646; }
   .country-list button {
     font-size: 20px;
     background-color: transparent;
@@ -328,13 +336,3 @@ table {
 @media only screen and (max-width: 680px) {
   .sidebar-disappear {
     display: none; } }
-
-.notify-error {
-  opacity: 0;
-  font-size: 20px;
-  background-color: red;
-  font-style: italic;
-  position: absolute;
-  padding: 10px;
-  border: 2px solid black;
-  transition: 1s; }

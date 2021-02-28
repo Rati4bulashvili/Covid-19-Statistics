@@ -1,0 +1,138 @@
+.wrapper{
+    &__statistics{
+        display: flex;
+        flex-flow: row wrap;
+        
+        height: 100%;
+        width: 100%;
+        justify-content: space-around;
+
+        @media only screen and (max-width: 1820px) {
+            margin-top: 50px;
+            justify-content: center;
+        }
+        
+        &__country-data{
+
+            display: flex;
+            @media only screen and (max-width: 1820px) {
+                flex-flow: column wrap;
+            }
+
+            @media only screen and (max-width: 1150px) {
+                justify-content: center;
+            }
+            @media only screen and (max-width: 500px) {
+                width: 100%;
+            }
+            
+            &__details{
+                
+                display: flex;
+                @media only screen and (max-width: 1820px) {
+                    margin-top: 50px;
+                    justify-content: center;
+                }
+                
+                @media only screen and (max-width: 1150px) {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                @media only screen and (max-width: 500px) {
+                    width: 100%;
+                }
+
+                &__country-info{
+                        border-right: 1px solid black;
+                        
+                        @media only screen and (max-width: 1150px) {
+                            border-right: none;
+                            border-bottom: 1px solid black;
+                        }
+                        
+                        @media only screen and (max-width: 500px) {
+                            border-bottom: 1px solid black;
+                        }
+                }
+
+                &__country-info, &__covid-info{      
+                    @media only screen and (max-width: 500px) {
+                        width: 100%;
+
+                        padding: 10px 0px 0px 0px;
+                    }
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: space-around;
+                    padding: 20px;
+                    background-color: $yellow;
+                    color: black;
+                    font-weight: bold;
+                    width: 300px;
+                    
+                    &__header{
+                        font-size: 24px;
+                        text-transform: uppercase;
+                        margin-bottom: 20px;
+                        align-self: center;
+                        white-space: nowrap;
+                    }
+                    
+                    &__population, &__language, &__capital, &__region, &__currency{
+                        font-size: 22px;
+                        padding: 10px;
+                    }
+
+                    &__cases, &__deaths, &__recovered, &__critical{
+                        font-size: 22px;
+                        padding: 15px;
+                    }
+                }
+            }
+
+            display: flex;
+            &__country-flag{
+                width:680px;
+                height: 400px;
+
+                @media only screen and (max-width: 1150px) {
+                    width: 500px;
+                    height: 300px;
+                }
+                @media only screen and (max-width: 850px) {
+                    width: 341px;
+                    height: 200px;
+                }
+                @media only screen and (max-width: 500px) {
+                    width: 100%;
+                    height: 300px;
+                }
+                @media only screen and (max-width: 375px) {
+                    width: 100%;
+                    height: 230px;
+                }
+            }
+        }
+    }
+
+    &__map{
+        margin-top: 50px;
+        img{
+            width: 1100px;
+            @media only screen and (max-width: 1550px) {
+                max-width:680px;
+            }
+
+            @media only screen and (max-width: 1150px) {
+                width: 500px;
+            }
+            @media only screen and (max-width: 850px) {
+                width: 341px;
+            }
+            @media only screen and (max-width: 500px) {
+                width: 100%;
+            }
+        }
+    }
+}

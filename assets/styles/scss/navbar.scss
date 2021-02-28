@@ -1,0 +1,92 @@
+.navbar{
+    background-color: $darkBlue;
+    list-style-type: none;
+    margin: 0px;
+    padding: 3px 0px;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    
+    @media only screen and (max-width: 1150px) {
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: 500px) {
+        width: 100%;
+        padding: 0px;
+        height: 60px;
+    }
+
+    &__list-item{
+        &--sidebar-toggle{
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            
+            &__img{
+                width: 40px;
+                margin: 10px;
+            }
+            
+            @media only screen and (min-width:680px) {
+                display: none;
+            }
+        }
+    }
+
+    &__sections{
+        display: flex;
+        justify-content: center;
+
+        &__list-item{
+
+            display: flex;
+            align-items: center;
+
+            &__link{
+                height: 100%;
+                color: white;
+                text-align: center;
+                padding: 0px 16px;
+                text-decoration: none;
+                font-size: 22px;
+                color: $mint;
+                transition: 0.4s;
+                display: flex;
+                align-items: center;
+                
+                @media only screen and (max-width: 500px) {
+                    font-size: 20px;
+                    padding: 0px 10px;
+                }
+                @media only screen and (max-width: 350px) {
+                    font-size: 18px;
+                    padding: 0px 8px;
+                }
+                &:hover{
+                    color: $yellow;
+                    padding-bottom: 8px;
+                }
+            }
+        }
+    }
+    
+    &__list-item{
+        &__link{
+            display: block;
+        }
+
+        &--logo{
+            height: 54px;
+            display: block;
+
+            @media only screen and (min-width: 1150px) {
+                margin: 0px  20px;
+            }
+            @media only screen and (max-width:680px) {
+                display: none;
+            }
+        }
+    }    
+}
