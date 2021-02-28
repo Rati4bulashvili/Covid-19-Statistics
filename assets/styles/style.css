@@ -257,8 +257,8 @@ table {
           white-space: nowrap; }
         .wrapper__statistics__country-data__details__country-info__population, .wrapper__statistics__country-data__details__country-info__language, .wrapper__statistics__country-data__details__country-info__capital, .wrapper__statistics__country-data__details__country-info__region, .wrapper__statistics__country-data__details__country-info__currency, .wrapper__statistics__country-data__details__covid-info__population, .wrapper__statistics__country-data__details__covid-info__language, .wrapper__statistics__country-data__details__covid-info__capital, .wrapper__statistics__country-data__details__covid-info__region, .wrapper__statistics__country-data__details__covid-info__currency {
           font-size: 22px;
-          padding: 10px; }
-        .wrapper__statistics__country-data__details__country-info__cases, .wrapper__statistics__country-data__details__country-info__deaths, .wrapper__statistics__country-data__details__country-info__recovered, .wrapper__statistics__country-data__details__country-info__critical, .wrapper__statistics__country-data__details__covid-info__cases, .wrapper__statistics__country-data__details__covid-info__deaths, .wrapper__statistics__country-data__details__covid-info__recovered, .wrapper__statistics__country-data__details__covid-info__critical {
+          padding: 15px; }
+        .wrapper__statistics__country-data__details__country-info__cases, .wrapper__statistics__country-data__details__country-info__deaths, .wrapper__statistics__country-data__details__country-info__recovered, .wrapper__statistics__country-data__details__country-info__critical, .wrapper__statistics__country-data__details__country-info__new-deaths, .wrapper__statistics__country-data__details__country-info__new-cases, .wrapper__statistics__country-data__details__covid-info__cases, .wrapper__statistics__country-data__details__covid-info__deaths, .wrapper__statistics__country-data__details__covid-info__recovered, .wrapper__statistics__country-data__details__covid-info__critical, .wrapper__statistics__country-data__details__covid-info__new-deaths, .wrapper__statistics__country-data__details__covid-info__new-cases {
           font-size: 22px;
           padding: 15px; }
     .wrapper__statistics__country-data__country-flag {
@@ -323,7 +323,8 @@ table {
 @media only screen and (max-width: 680px) {
   .sidebar-appear {
     display: block;
-    position: absolute; } }
+    position: absolute;
+    height: 1250px; } }
 
 @media only screen and (max-width: 680px) {
   .sidebar-disappear {

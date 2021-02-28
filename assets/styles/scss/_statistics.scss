@@ -59,7 +59,6 @@
                 &__country-info, &__covid-info{      
                     @media only screen and (max-width: 500px) {
                         width: 100%;
-
                         padding: 10px 0px 0px 0px;
                     }
 
@@ -82,10 +81,10 @@
                     
                     &__population, &__language, &__capital, &__region, &__currency{
                         font-size: 22px;
-                        padding: 10px;
+                        padding: 15px;
                     }
 
-                    &__cases, &__deaths, &__recovered, &__critical{
+                    &__cases, &__deaths, &__recovered, &__critical, &__new-deaths, &__new-cases{
                         font-size: 22px;
                         padding: 15px;
                     }
