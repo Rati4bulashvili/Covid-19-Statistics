@@ -35,7 +35,8 @@ export function fillContainer(arr, container){
 
 		let li = document.createElement('li');
 		li.dataset.id = container.childElementCount;
-		li.classList.add('country-list');
+		li.dataset.name = elem;
+		li.classList.add('country-list-item');
 
 		let btnContainer = document.createElement('span');
 		btnContainer.dataset.id = elem;

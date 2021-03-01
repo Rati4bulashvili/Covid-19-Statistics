@@ -10,8 +10,10 @@ import * as model from './model.js'
 import * as view from './view.js'
 
 window.onload = function(){
-	if(favourites.length){
+	if(model._getLocalStorage()){
 		favourites = model._getLocalStorage();
+	}
+	if(favourites.length){
 		view.fillContainer(favourites, favouritesContainer)
 	}
 }
@@ -22,6 +24,7 @@ async function renderCountries(){
 	.then(response => {
 		countries = response;
 		let sortedCountries = sortCountries(countries);
+		
 		view.fillContainer(sortedCountries, view.countriesContainer);
 		view.input.disabled = false;
 	}).catch(err => {
@@ -39,7 +42,7 @@ async function renderOverallData(){
 		deaths.innerText = res[0].deaths;
 		critical.innerText = res[0].critical;
 	}).catch(err => {
-		view.displayErrorMsg(err  + '💥')
+		view.displayErrorMsg('Too Many API Calls (give me some time to fetch) 💥')
 	})
 }
 renderOverallData();
@@ -53,31 +56,44 @@ export function sortCountries(countries){
 	return sortedCountries;
 }
 
+
 export function moveToFavourite(event){
-	const id = event.target.closest('.country-list').dataset.id;
+	const id = event.target.closest('.country-list-item').dataset.id;
+	let favouritesSet, choosedCountry;
+
 	if(view.searching){
-		favourites.push(view.filteredCountries[id]);
-		favourites = [...new Set(favourites)];
-		view.fillContainer(favourites, favouritesContainer)
+		choosedCountry = view.filteredCountries[id];
+		favourites.push(choosedCountry);
 	}
 	else{
 		const sortedCountries = sortCountries(countries);
-		favourites.push(sortedCountries[id]);
-		favourites = [...new Set(favourites)];
-		view.fillContainer(favourites, favouritesContainer)
+		choosedCountry = sortedCountries[id];
+		favourites.push(choosedCountry);
 	}
-	localStorage.setItem('favourites', favourites);
+	
+	favouritesSet = [...new Set(favourites)];
+	if(favourites.length > favouritesSet.length){
+		view.displayErrorMsg(`${choosedCountry} is already favourite`);
+		favourites = favouritesSet;
+	}
+	else{
+		view.fillContainer(favouritesSet, favouritesContainer)
+		localStorage.setItem('favourites', favouritesSet);
+	}
 }
 
 export function removeFromFavourite(event){
-	const id = event.target.closest('.country-list').dataset.id;
+	const id = event.target.closest('.country-list-item').dataset.id;
 	favourites.splice(id, 1);
 	view.fillContainer(favourites, favouritesContainer)
 	localStorage.setItem('favourites', favourites);
 }
+
 export async function getCountryInfo(event){
 	const country = event.target.closest('.country-name').dataset.id;
 	const res = await fetch(`https://restcountries.eu/rest/v2/name/${country}`);
 	const [data] = await res.json();
 	return data;
 }
+
+
