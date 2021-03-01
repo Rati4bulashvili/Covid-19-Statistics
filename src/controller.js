@@ -1,17 +1,19 @@
 const favouritesContainer = document.querySelector('.wrapper__sidebar__favourites__list');
 const cases = document.querySelector('#cases');
 const deaths = document.querySelector('#deaths');
-export const critical = document.querySelector('#critical');
 const recovered = document.querySelector('#recovered');
+let favourites = [];
+export const critical = document.querySelector('#critical');
 export let countries;
-let favourites;
 
 import * as model from './model.js'
 import * as view from './view.js'
 
 window.onload = function(){
-	favourites = model._getLocalStorage();
-	view.fillContainer(favourites, favouritesContainer)
+	if(favourites.length){
+		favourites = model._getLocalStorage();
+		view.fillContainer(favourites, favouritesContainer)
+	}
 }
 
 async function renderCountries(){
@@ -73,7 +75,6 @@ export function removeFromFavourite(event){
 	view.fillContainer(favourites, favouritesContainer)
 	localStorage.setItem('favourites', favourites);
 }
-
 export async function getCountryInfo(event){
 	const country = event.target.closest('.country-name').dataset.id;
 	const res = await fetch(`https://restcountries.eu/rest/v2/name/${country}`);

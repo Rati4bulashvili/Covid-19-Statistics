@@ -2,7 +2,7 @@ export const getCountries = async function(){
 	const countries = await fetch("https://covid-19-coronavirus-statistics2.p.rapidapi.com/countriesData", {
 		"method": "GET",
 		"headers": {
-			"x-rapidapi-key": "e9dd0e2b76mshaa4911a7ce7ae52p161d51jsncb3f45a82b6a",
+			"x-rapidapi-key": "f3154dd547mshea5052542c54145p1a64fejsn128e64e07511",
 			"x-rapidapi-host": "covid-19-coronavirus-statistics2.p.rapidapi.com"
 		}
 	})

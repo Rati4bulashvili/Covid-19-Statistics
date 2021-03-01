@@ -13,6 +13,7 @@ const sidebarImg = document.querySelector('.navbar__list-item--sidebar-toggle__i
 const sidebar = document.querySelector('.wrapper__sidebar');
 const sidebarBtn = document.querySelector('.navbar__list-item--sidebar-toggle');
 const header = document.querySelector('#header');
+const criticalContainer = document.querySelector(".wrapper__statistics__country-data__details__covid-info__critical");
 export const input = document.querySelector('.wrapper__sidebar__all-countries__search__input');
 export const countriesContainer = document.querySelector('.wrapper__sidebar__all-countries__list');
 export let searching = false;
@@ -123,9 +124,23 @@ async function viewCovidInfo(event){
         cases.innerText = countryData.totalCases;
         recovered.innerText = countryData.totalRecovered;
         deaths.innerText = countryData.totalDeaths;
-        newCases.innerText = `New Cases: ${countryData.newCases}`;
-        newDeaths.innerText = `New Deaths: ${countryData.newDeaths}`;
-        document.querySelector(".wrapper__statistics__country-data__details__covid-info__critical").style.display = 'none';
+		if(countryData.newCases === ''){
+			newCases.innerText = `New Cases: +0`;
+			newDeaths.style.color = 'black';
+		}
+		else{
+			newCases.innerText = `New Cases: ${countryData.newCases}`;
+			newCases.style.color = 'purple';
+		}
+		if(countryData.newDeaths === ''){
+			newDeaths.innerText = `New Deaths: +0`;
+			newCases.style.color = 'black';
+		}
+		else{
+			newDeaths.style.color = 'red';
+			newDeaths.innerText = `New Deaths: ${countryData.newDeaths}`;
+		}
+        criticalContainer.style.display = 'none';
     }
     catch{
         displayErrorMsg('Please Wait Until All Countries Load ⏳')
@@ -152,4 +167,17 @@ function toggleSidebar(){
 		sidebar.classList.add('sidebar-appear')
 		sidebarImg.src='./assets/pictures/arrow-left.png';
 	}
+}
+
+export async function renderOverallData(getApi){
+
+	await getApi().then(res => {
+		cases.innerText = res[0].confirmed;
+		recovered.innerText = res[0].recovered;
+		deaths.innerText = res[0].deaths;
+		deaths.innerText = res[0].deaths;
+		critical.innerText = res[0].critical;
+	}).catch(err => {
+		view.displayErrorMsg(err  + '💥')
+	})
 }
