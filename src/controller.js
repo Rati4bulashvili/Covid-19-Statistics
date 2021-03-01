@@ -5,6 +5,7 @@ const recovered = document.querySelector('#recovered');
 let favourites = [];
 export const critical = document.querySelector('#critical');
 export let countries;
+let sortedCountries;
 
 import * as model from './model.js'
 import * as view from './view.js'
@@ -23,7 +24,7 @@ async function renderCountries(){
 	await model.getCountries().then(response => response.result)
 	.then(response => {
 		countries = response;
-		let sortedCountries = sortCountries(countries);
+		sortedCountries = sortCountries(countries);
 		
 		view.fillContainer(sortedCountries, view.countriesContainer);
 		view.input.disabled = false;
@@ -56,7 +57,6 @@ export function sortCountries(countries){
 	return sortedCountries;
 }
 
-
 export function moveToFavourite(event){
 	const id = event.target.closest('.country-list-item').dataset.id;
 	let favouritesSet, choosedCountry;
@@ -66,7 +66,6 @@ export function moveToFavourite(event){
 		favourites.push(choosedCountry);
 	}
 	else{
-		const sortedCountries = sortCountries(countries);
 		choosedCountry = sortedCountries[id];
 		favourites.push(choosedCountry);
 	}
